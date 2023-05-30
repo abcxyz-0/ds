@@ -68,6 +68,15 @@ group_data = pd.get_dummies(iris_data['species'],drop_first=True) # Normalizatio
 group_data
 iris_data = pd.concat([iris_data,group_data],axis=1)
 iris_data
+
+summary_stats = iris_data.groupby('species').agg({
+    'sepal_length': ['mean', 'median', 'min', 'max', 'std'],
+    'sepal_width': ['mean', 'median', 'min', 'max', 'std'],
+    'petal_length': ['mean', 'median', 'min', 'max', 'std'],
+    'petal_width': ['mean', 'median', 'min', 'max','std']
+})
+print(summary_stats)
+
 x = px.scatter(iris_data, x="sepal_length", y="sepal_width", color="species")
 x.show()
 """
